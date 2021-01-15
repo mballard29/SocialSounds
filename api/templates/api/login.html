@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+     body {            
+        background-image: url("https://i.ibb.co/Ld4NLGF/vishnu-r-nair-m1-WZS5ye404-unsplash.jpg");
+    }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - Social Sounds</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">    
+    <!-- Bulma Version 0.9.0-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <section class="hero is-fullheight is-light is-bold header-image">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-4 is-offset-4">
+                    <div class="box">
+                        <figure class="avatar">
+                            <img src="https://i.ibb.co/09F7yxH/Copy-of-Copy-of-Copy-of-White-Simple-Music-Icon-Etsy-Banner-1.png">
+                        </figure>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="field">
+                                <label class="email">Email</label>
+                                <div class="control has-icons-right">
+                                  <input class="input" type="text" name="email">
+                                  <span class="icon is-small is-right">
+                                    <i class="fa fa-user"></i>
+                                  </span>
+                                </div>
+                              </div>
+
+                              <div class="field">
+                                <label class="password">Password</label>
+                                <div class="control has-icons-right">
+                                  <input class="input" type="password" name = "password">
+                                  <span class="icon is-small is-right">
+                                    <i class="fa fa-key"></i>
+                                  </span>
+                                </div>
+                              </div>
+
+                            {% for message in messages %}
+
+                            <div class="alert alert-success">
+                                <a class="close" href="#" data-dismiss="alert">×</a>
+
+                                {{ message }}
+
+                            </div>
+                            {% endfor %}
+
+                            <div class="field">
+                                <label class="rememberMe">
+                                  <input type="checkbox" name="rememberMe">
+                                  Remember me
+                                </label>
+                            </div>
+                            <button class="button is-rounded is-dark
+                            is-normal
+                            is-outlined" type="submit">Login <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                    <p class="has-text-grey">
+                        <a href="/api/auth/register">Sign Up</a> &nbsp;·&nbsp;
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- </section> -->
+
+    <script async type="text/javascript" src="../js/bulma.js"></script>
+</body>
+
+</html>

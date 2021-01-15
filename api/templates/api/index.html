@@ -1,0 +1,48 @@
+<!--
+index view / home page / feed view
+just for demonstration purposes
+does not include textfield for adding a comment
+replace with using serializers for front end
+DOESNT WORK
+-->
+<html>
+    <body>
+
+        {% if latest_item %}
+
+            <h3>SocialSounds Feed goes here: </h3>
+
+            <ul>
+            {% for item in latest_item %}
+                <li><h1>User: {{ item.posted_by }}</h1></li>
+                <li><h3>{{ item.created_at }}</h3></li>
+                <li><h1>Post: {{ item.title }}</h1></li>
+
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                <label for="vehicle1"> I have a bike</label><br>
+
+                <form action="{% url 'api:like' item.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="checkbox" name="item" id="item{{ item.id }}" value="{{ item.id }}">
+                    <label for="item{{ item.id }}"> Like </label>
+                    <input type="submit" value="Like">
+                </form>
+                <li><form action="{% url 'api:comment' item.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="comment" id="comment{{ forloop.counter }}">
+                    <label for="comment{{ forloop.counter }}"> Comment </label>
+                    <input type="submit" value="Comment">
+                </form></li>
+                <li><h3>Likes: {{ Like.objects.get(item.id=item.id).count() }}</h3></li>
+                <li><h3>Caption: {{ Comment.object.get(item.id=item.id).filter(is_caption=True) }}</h3></li>
+                <li><a href="{% url 'api:detail' item.id %}">{{ item.title }}</a></li><br>
+            {% endfor %}
+            </ul>
+
+        {% else %}
+            <p>No items are available.</p>
+
+        {% endif %}
+
+    </body>
+</html>
